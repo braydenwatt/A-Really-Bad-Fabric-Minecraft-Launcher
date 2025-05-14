@@ -47,4 +47,5 @@ The `launcher.py` script determines the absolute path of its own directory and l
 ## Troubleshooting
 
 * **Permission Denied**: Run `chmod +x fabric.command`.
+* **MACOS Cannot Verify the Safety of launcher.command**: Run `xattr -rc launcher.command`.
 * **Nothing Happens When Clicked**: Ensure the `.command` file includes a shebang (`#!/bin/bash`) and properly points to `python3`.
