@@ -19,12 +19,7 @@ A lightweight Python-based launcher for running a custom `minecraft_launcher.py`
 
 ## How to Use
 
-1. Clone or download this repository:
-
-   ```bash
-   git clone https://github.com/your-username/fabric-minecraft-launcher.git
-   cd fabric-minecraft-launcher
-   ```
+1. Download the latest [release](https://github.com/braydenwatt/A-Really-Bad-Fabric-Minecraft-Launcher/releases/tag/v0.1.0)
 
 2. Make sure the `.command` file is executable:
 
