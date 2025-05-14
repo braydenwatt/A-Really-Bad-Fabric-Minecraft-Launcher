@@ -11,7 +11,6 @@ def clear_fields():
     for label, var in fields:
         var.set('')
 
-
 def save_config():
     config = {
         "username": username_var.get(),
@@ -19,6 +18,7 @@ def save_config():
         "profile_name": profile_name_var.get(),
         "version": version_var.get(),
         "access_token": access_token_var.get(),
+        "java": java_var.get(),
     }
     try:
         with open(CONFIG_PATH, "w") as f:
@@ -38,6 +38,7 @@ def load_config():
         profile_name_var.set(config.get("profile_name", ""))
         version_var.set(config.get("version", ""))
         access_token_var.set(config.get("access_token", ""))
+        java_var.set(config.get("java", ""))
     except Exception as e:
         messagebox.showerror("Error", f"Failed to load config: {e}")
 
@@ -47,6 +48,7 @@ def run_script():
     profile_name = profile_name_var.get()
     version = version_var.get()
     access_token = access_token_var.get()
+    java = java_var.get()
 
     if not all([username, uuid, profile_name, version, access_token]):
         messagebox.showerror("Error", "All fields must be filled out.")
@@ -65,7 +67,7 @@ def run_script():
 
     def run_and_capture():
         process = subprocess.Popen(
-            [script_path, username, uuid, profile_name, version, access_token],
+            [script_path, username, uuid, profile_name, version, access_token, java],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True
@@ -97,6 +99,7 @@ uuid_var = tk.StringVar()
 profile_name_var = tk.StringVar()
 version_var = tk.StringVar()
 access_token_var = tk.StringVar()
+java_var = tk.StringVar()
 
 fields = [
     ("Username:", username_var),
@@ -104,6 +107,7 @@ fields = [
     ("Profile Name:", profile_name_var),
     ("Version:", version_var),
     ("Access Token:", access_token_var),
+    ("Java Path:", java_var)
 ]
 
 for i, (label, var) in enumerate(fields):
