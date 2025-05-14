@@ -1,7 +1,3 @@
-Sure! Here's a clean and professional `README.md` for your Minecraft launcher project. You can adjust any parts depending on how users should customize it.
-
----
-
 # Fabric Minecraft Launcher
 
 A lightweight Python-based launcher for running a custom `minecraft_launcher.py` and accompanying `.command` script—ideal for setting up modded Minecraft (e.g., Fabric) with a double-clickable experience on macOS.
