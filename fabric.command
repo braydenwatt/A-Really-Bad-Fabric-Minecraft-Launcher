@@ -1,23 +1,26 @@
 #!/bin/bash
 
-if [ "$#" -lt 5 ]; then
-  echo "Usage: $0 <USERNAME> <UUID> <PROFILE_NAME> <VERSION> <ACCESS_TOKEN> [JAVA_PATH]"
+if [ "$#" -lt 6 ]; then
+  echo "Usage: $0 <USERNAME> <UUID> <PROFILE_NAME> <MC_VERSION> <FABRIC_VERSION> <ACCESS_TOKEN> [JAVA_PATH]"
   exit 1
 fi
 
 USERNAME="$1"
 UUID="$2"
 PROFILE_NAME="$3"
-VERSION="$4"
-ACCESS_TOKEN="$5"
-JAVA_PATH="$6"
+MC_VERSION="$4"
+FABRIC_VERSION="$5"
+ACCESS_TOKEN="$6"
+JAVA_PATH="$7"
+
+VERSION="${MC_VERSION}-${FABRIC_VERSION}"
 
 MODRINTH_DIR="$HOME/Library/Application Support/com.modrinth.theseus"
 GAME_DIR="$MODRINTH_DIR/profiles/$PROFILE_NAME"
 VERSION_DIR="$MODRINTH_DIR/meta/versions/$VERSION"
 VERSION_JSON="$VERSION_DIR/$VERSION.json"
 ASSETS_DIR="$MODRINTH_DIR/meta/assets"
-NATIVES_DIR="$VERSION_DIR/natives"
+NATIVES_DIR="$MODRINTH_DIR/meta/natives/${VERSION}"
 LIBRARIES_DIR="$MODRINTH_DIR/meta/libraries"
 
 # Check if VERSION_JSON exists
@@ -82,7 +85,8 @@ else
   echo "⚠️ Minecraft client JAR not found at: $MC_CLIENT_JAR"
 fi
 
-FABRIC_LOADER="$LIBRARIES_DIR/net/fabricmc/fabric-loader/0.16.10/fabric-loader-0.16.10.jar"
+FABRIC_LOADER="$LIBRARIES_DIR/net/fabricmc/fabric-loader/${FABRIC_VERSION}/fabric-loader-${FABRIC_VERSION}.jar"
+
 if [ -f "$FABRIC_LOADER" ]; then
   CLASSPATH="$CLASSPATH:$FABRIC_LOADER"
 else
@@ -143,6 +147,8 @@ fi
   -Dminecraft.launcher.version="1.0" \
   -Dmixin.java.compatibilityLevel=JAVA_21 \
   -Dmixin.env.disableCompatibilityLevel=true \
+  -Dorg.lwjgl.util.Debug=true \
+  -Dorg.lwjgl.util.DebugLoader=true \
   -cp "$CLASSPATH" \
   "$MAIN_CLASS" \
   -DFabricMcEmu= net.minecraft.client.main.Main \

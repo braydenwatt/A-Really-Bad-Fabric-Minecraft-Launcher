@@ -16,7 +16,8 @@ def save_config():
         "username": username_var.get(),
         "uuid": uuid_var.get(),
         "profile_name": profile_name_var.get(),
-        "version": version_var.get(),
+        "minecraft_version": minecraft_version_var.get(),
+        "fabric_version": fabric_version_var.get(),
         "access_token": access_token_var.get(),
         "java": java_var.get(),
     }
@@ -36,7 +37,8 @@ def load_config():
         username_var.set(config.get("username", ""))
         uuid_var.set(config.get("uuid", ""))
         profile_name_var.set(config.get("profile_name", ""))
-        version_var.set(config.get("version", ""))
+        minecraft_version_var.set(config.get("minecraft_version", ""))
+        fabric_version_var.set(config.get("fabric_version", ""))
         access_token_var.set(config.get("access_token", ""))
         java_var.set(config.get("java", ""))
     except Exception as e:
@@ -46,11 +48,12 @@ def run_script():
     username = username_var.get()
     uuid = uuid_var.get()
     profile_name = profile_name_var.get()
-    version = version_var.get()
+    minecraft_version = minecraft_version_var.get()
+    fabric_version = fabric_version_var.get()
     access_token = access_token_var.get()
     java = java_var.get()
 
-    if not all([username, uuid, profile_name, version, access_token]):
+    if not all([username, uuid, profile_name, minecraft_version, fabric_version, access_token]):
         messagebox.showerror("Error", "All fields must be filled out.")
         return
 
@@ -67,7 +70,7 @@ def run_script():
 
     def run_and_capture():
         process = subprocess.Popen(
-            [script_path, username, uuid, profile_name, version, access_token, java],
+            [script_path, username, uuid, profile_name, minecraft_version, fabric_version, access_token, java],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True
@@ -97,7 +100,8 @@ input_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 username_var = tk.StringVar()
 uuid_var = tk.StringVar()
 profile_name_var = tk.StringVar()
-version_var = tk.StringVar()
+minecraft_version_var = tk.StringVar()
+fabric_version_var = tk.StringVar()
 access_token_var = tk.StringVar()
 java_var = tk.StringVar()
 
@@ -105,10 +109,13 @@ fields = [
     ("Username:", username_var),
     ("UUID:", uuid_var),
     ("Profile Name:", profile_name_var),
-    ("Version:", version_var),
+    ("Minecraft Version:", minecraft_version_var),
+    ("Fabric Version:", fabric_version_var),
     ("Access Token:", access_token_var),
     ("Java Path:", java_var)
 ]
+
+
 
 for i, (label, var) in enumerate(fields):
     ttk.Label(input_frame, text=label).grid(row=i, column=0, sticky=tk.W, pady=2)
