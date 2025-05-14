@@ -20,7 +20,7 @@ GAME_DIR="$MODRINTH_DIR/profiles/$PROFILE_NAME"
 VERSION_DIR="$MODRINTH_DIR/meta/versions/$VERSION"
 VERSION_JSON="$VERSION_DIR/$VERSION.json"
 ASSETS_DIR="$MODRINTH_DIR/meta/assets"
-NATIVES_DIR="$VERSION_DIR/natives"
+NATIVES_DIR="$MODRINTH_DIR/meta/natives/${VERSION}"
 LIBRARIES_DIR="$MODRINTH_DIR/meta/libraries"
 
 # Check if VERSION_JSON exists
@@ -30,29 +30,6 @@ if [ ! -f "$VERSION_JSON" ]; then
 fi
 
 mkdir -p "$NATIVES_DIR"
-
-URL="https://github.com/MidCoard/MinecraftNativesDownloader/releases/download/1.1/MinecraftNativesDownloader-1.1.jar"
-
-curl -L -o "$VERSION_DIR/file.jar" "$URL"
-
-cd "$VERSION_DIR"
-
-java -jar "$VERSION_DIR/file.jar"
-
-# Move files from build directory to natives directory
-SOURCE_DIR="$VERSION_DIR/build/natives/arm64"
-DEST_DIR="$VERSION_DIR/natives"
-
-if [ -d "$SOURCE_DIR" ]; then
-  echo "📦 Moving files from $SOURCE_DIR to $DEST_DIR..."
-  mv "$SOURCE_DIR"/* "$DEST_DIR"/ || {
-    echo "❌ Failed to move files from $SOURCE_DIR to $DEST_DIR"
-    exit 1
-  }
-  echo "✅ Files moved successfully."
-else
-  echo "⚠️ Source directory does not exist: $SOURCE_DIR"
-fi
 
 echo "Building classpath..."
 
