@@ -19,7 +19,7 @@ A lightweight Python-based launcher for running a custom `minecraft_launcher.py`
 
 ## How to Use
 
-1. Download the zip form the latest release [here](https://github.com/braydenwatt/A-Really-Bad-Fabric-Minecraft-Launcher/releases/tag/v0.1.0).
+1. Download the zip form the latest release [here](https://github.com/braydenwatt/A-Really-Bad-Fabric-Minecraft-Launcher/releases/tag/v0.1.1).
 
 2. Make sure the `.command` files are executable:
 
@@ -47,4 +47,5 @@ The `launcher.py` script determines the absolute path of its own directory and l
 ## Troubleshooting
 
 * **Permission Denied**: Run `chmod +x fabric.command`.
+* **MACOS Cannot Verify the Safety of launcher.command**: Run `xattr -rc launcher.command`.
 * **Nothing Happens When Clicked**: Ensure the `.command` file includes a shebang (`#!/bin/bash`) and properly points to `python3`.
