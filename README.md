@@ -19,21 +19,16 @@ A lightweight Python-based launcher for running a custom `minecraft_launcher.py`
 
 ## How to Use
 
-1. Download the zip form the latest release [here](https://github.com/braydenwatt/A-Really-Bad-Fabric-Minecraft-Launcher/releases/tag/v0.1.0)
+1. Download the zip form the latest release [here](https://github.com/braydenwatt/A-Really-Bad-Fabric-Minecraft-Launcher/releases/tag/v0.1.0).
 
-2. Make sure the `.command` file is executable:
+2. Make sure the `.command` files are executable:
 
    ```bash
    chmod +x fabric.command
+   chmod +x launcher.command
    ```
 
-3. Run the Python launcher:
-
-   ```bash
-   python3 launcher.py
-   ```
-
-   Or, double-click the `.command` file (once properly configured) for a terminal-less launch.
+3. Double-click the `launcher.command` file (once properly configured).
    
 4. Use the launcher:
    1. Enter your **Username**.
