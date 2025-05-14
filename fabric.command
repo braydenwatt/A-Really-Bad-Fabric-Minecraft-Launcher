@@ -113,22 +113,14 @@ echo "✅ Classpath written to $CLASSPATH_FILE"
 MAIN_CLASS=$(jq -r '.mainClass // "net.fabricmc.loader.impl.launch.knot.KnotClient"' "$VERSION_JSON")
 ASSET_INDEX=$(jq -r '.assetIndex.id // "1.21"' "$VERSION_JSON")
 
-JAVA_PATH="$6"
-
-if [ -z "$JAVA_PATH" ]; then
-  JAVA_PATH=$(/usr/libexec/java_home -v 21 2>/dev/null)
-  if [ -z "$JAVA_PATH" ]; then
-    echo "❌ Java 21 installation not found. Please provide a valid JAVA_PATH."
-    exit 1
-  fi
-  echo "🔍 Using auto-detected Java 21 at: $JAVA_PATH"
-else
-  if [ ! -x "$JAVA_PATH/bin/java" ]; then
-    echo "❌ Provided JAVA_PATH is invalid or Java binary not found at: $JAVA_PATH/bin/java"
-    exit 1
-  fi
-  echo "✅ Using provided Java path: $JAVA_PATH"
+# Launch Minecraft
+echo "Launching Minecraft with main class: $MAIN_CLASS"
+JAVA_HOME=$(/usr/libexec/java_home -v 21 2>/dev/null)
+if [ -z "$JAVA_HOME" ]; then
+  echo "❌ Java 21 installation not found. Please install Java 21."
+  exit 1
 fi
+echo "Using Java 21 at: $JAVA_HOME"
 
 "$JAVA_HOME/bin/java" \
   -XstartOnFirstThread \
