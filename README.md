@@ -19,7 +19,7 @@ A lightweight Python-based launcher for running a custom `minecraft_launcher.py`
 
 ## How to Use
 
-1. Download the zip form the latest release [here](https://github.com/braydenwatt/A-Really-Bad-Fabric-Minecraft-Launcher/releases/tag/v0.1.1).
+1. Download the zip form the latest release [here](https://github.com/braydenwatt/A-Really-Bad-Fabric-Minecraft-Launcher/releases/latest).
 
 2. Make sure the `.command` files are executable:
 
