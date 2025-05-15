@@ -14,15 +14,20 @@ echo "Downloading version manifest..."
 curl -s https://piston-meta.mojang.com/mc/game/version_manifest.json -o version_manifest.json
 
 if [ -z "$VERSION" ]; then
-  # Get the latest release version ID from manifest
-  VERSION=$(jq -r '.latest.release' version_manifest.json)
+  # Get the latest release version ID from manifest using Python
+  VERSION=$(python3 -c "import json; print(json.load(open('version_manifest.json'))['latest']['release'])")
   echo "No version specified. Using latest release: $VERSION"
 else
   echo "Using specified version: $VERSION"
 fi
 
-# Get the URL for the specified version
-VERSION_URL=$(jq -r --arg ver "$VERSION" '.versions[] | select(.id == $ver) | .url' version_manifest.json)
+# Get the URL for the specified version using Python
+VERSION_URL=$(python3 -c "
+import json
+with open('version_manifest.json') as f:
+    data = json.load(f)
+    print(next(v['url'] for v in data['versions'] if v['id'] == '$VERSION'), end='')
+")
 
 if [ -z "$VERSION_URL" ]; then
   echo "Version $VERSION not found in manifest."
@@ -38,8 +43,12 @@ mkdir -p "$VERSION_DIR"
 # Download the version-specific JSON named as <version>.json inside the version folder
 curl -s "$VERSION_URL" -o "$VERSION_DIR/${VERSION}.json"
 
-# Extract client.jar URL from the downloaded JSON
-CLIENT_JAR_URL=$(jq -r '.downloads.client.url' "$VERSION_DIR/${VERSION}.json")
+# Extract client.jar URL from the downloaded JSON using Python
+CLIENT_JAR_URL=$(python3 -c "
+import json
+with open('$VERSION_DIR/${VERSION}.json') as f:
+    print(json.load(f)['downloads']['client']['url'], end='')
+")
 
 if [ -z "$CLIENT_JAR_URL" ]; then
   echo "Client jar URL not found for version $VERSION."
