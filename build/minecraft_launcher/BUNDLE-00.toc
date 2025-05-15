@@ -1,3 +1,0 @@
-([('minecraft_launcher',
-   '/Users/braydenwatt/Downloads/minecraft_launcher/dist/minecraft_launcher',
-   'EXECUTABLE')],)
