@@ -14,6 +14,7 @@ fi
 
 # Create subdirectories for configuration, mods, and profiles
 mkdir -p "$MINECRAFT_DIR/versions"
+mkdir -p "$MINECRAFT_DIR/instances"
 
 echo "Custom Minecraft launcher directory structure created successfully!"
 
