@@ -29,7 +29,7 @@ A custom Minecraft launcher built with PyQt5 that supports Fabric modloader, van
 ### Setup
 
 1. **Download the latest release:**
-   here
+   [here](https://github.com/braydenwatt/RBLauncher/releases/tag/v1.0.0)
 
 2. **Make launcher.command executable:**
    ```bash
