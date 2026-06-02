@@ -15,7 +15,7 @@ A lightweight Python-based Minecraft launcher.
 > For version 2.0.3+ simply download the Source code (zip).
 <img width="1197" height="785" alt="Screenshot 2025-12-20 at 12 31 59 AM" src="https://github.com/user-attachments/assets/a1f13b6b-1a4e-4cbe-a7f7-3fa945331cc5" />
 
-2. Download "Java 21 JDK" from Self Service.
+2. Download "Java 21 JDK" from Self Service. DOWNLOAD JAVA 25 for new verions of minecraft to work!!
 <img width="800" height="648" alt="Screenshot 2025-12-20 at 12 22 59 AM" src="https://github.com/user-attachments/assets/c7ac74c1-a8b5-4589-8810-590e8b1e60cd" />
 
 3. Extract the zip and right click on the folder. Press "New Terminal at Folder."
